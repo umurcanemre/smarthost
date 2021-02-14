@@ -23,8 +23,9 @@ Maven, Lombok and Spring Web utilized. For lombok issues see [https://projectlom
 * Basic structure implemented. 
 * Tests described in the project description (See details link above) , implemented. Tests build but fail.
 
+* Implemented RoomService to fit the description. Unit tests pass.
+* Enriched unit tests
 
 ### Planned
-* Implement RoomService to fit the description so unit tests pass.
 * Enrich unit tests with corner cases.
 * Implement controller class and add OpenAPI

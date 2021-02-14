@@ -139,5 +139,6 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
-
+.mvn
+mvnw*
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,maven

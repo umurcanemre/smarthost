@@ -1,8 +1,10 @@
 package com.umurcan.smarthost.bean;
 
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 
-@Data
+@Builder
+@Getter
 public class RoomAllocationResponse {
 	private long totalPremiumRoomEarn; //for the night
 	private int premiumRoomOccupancy; 
