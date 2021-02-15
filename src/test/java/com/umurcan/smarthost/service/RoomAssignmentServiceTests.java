@@ -11,13 +11,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.umurcan.smarthost.bean.RoomAllocationRequest;
-import com.umurcan.smarthost.bean.RoomAllocationResponse;
+import com.umurcan.smarthost.bean.RoomAssignmentRequest;
+import com.umurcan.smarthost.bean.RoomAssignmentResponse;
 
 @SpringBootTest
-public class RoomServiceTests {
+public class RoomAssignmentServiceTests {
 	@Autowired
-	RoomService roomService;
+	RoomAssignmentService roomService;
 	
 	List<Integer> customerBudgets = new ArrayList<>();
 	
@@ -29,7 +29,7 @@ public class RoomServiceTests {
 
 	@Test
 	void roomServiceTest_3economyRooms_3premium () {
-		var request = new RoomAllocationRequest(3,3,customerBudgets);
+		var request = new RoomAssignmentRequest(3,3,customerBudgets);
 		
 		var response = roomService.assignRoomsForCustomers(request);
 		
@@ -38,7 +38,7 @@ public class RoomServiceTests {
 	
 	@Test
 	void roomServiceTest_5economyRooms_7premium () {
-		var request = new RoomAllocationRequest(5,7,customerBudgets);
+		var request = new RoomAssignmentRequest(5,7,customerBudgets);
 		
 		var response = roomService.assignRoomsForCustomers(request);
 		
@@ -47,7 +47,7 @@ public class RoomServiceTests {
 	
 	@Test
 	void roomServiceTest_7economyRooms_2premium () {
-		var request = new RoomAllocationRequest(7,2,customerBudgets);
+		var request = new RoomAssignmentRequest(7,2,customerBudgets);
 		
 		var response = roomService.assignRoomsForCustomers(request);
 		
@@ -56,7 +56,7 @@ public class RoomServiceTests {
 	
 	@Test
 	void roomServiceTest_1economyRooms_7premium () {
-		var request = new RoomAllocationRequest(1,7,customerBudgets);
+		var request = new RoomAssignmentRequest(1,7,customerBudgets);
 		
 		var response = roomService.assignRoomsForCustomers(request);
 		
@@ -65,7 +65,7 @@ public class RoomServiceTests {
 	
 	@Test
 	void roomServiceTest_1economyRooms_0premium () {
-		var request = new RoomAllocationRequest(1,0,customerBudgets);
+		var request = new RoomAssignmentRequest(1,0,customerBudgets);
 		
 		var response = roomService.assignRoomsForCustomers(request);
 		
@@ -74,7 +74,7 @@ public class RoomServiceTests {
 	
 	@Test
 	void roomServiceTest_0economyRooms_1premium () {
-		var request = new RoomAllocationRequest(0,1,customerBudgets);
+		var request = new RoomAssignmentRequest(0,1,customerBudgets);
 		
 		var response = roomService.assignRoomsForCustomers(request);
 		
@@ -83,7 +83,7 @@ public class RoomServiceTests {
 	
 	@Test
 	void roomServiceTest_10economyRooms_10premium () {
-		var request = new RoomAllocationRequest(10,10,customerBudgets);
+		var request = new RoomAssignmentRequest(10,10,customerBudgets);
 		
 		var response = roomService.assignRoomsForCustomers(request);
 		
@@ -92,7 +92,7 @@ public class RoomServiceTests {
 	
 	@Test
 	void roomServiceTest_1economyRooms_9premium () {
-		var request = new RoomAllocationRequest(1,9,customerBudgets);
+		var request = new RoomAssignmentRequest(1,9,customerBudgets);
 		
 		var response = roomService.assignRoomsForCustomers(request);
 		
@@ -101,7 +101,7 @@ public class RoomServiceTests {
 	
 	@Test
 	void roomServiceTest_10premium () {
-		var request = new RoomAllocationRequest(0,10,customerBudgets);
+		var request = new RoomAssignmentRequest(0,10,customerBudgets);
 		
 		var response = roomService.assignRoomsForCustomers(request);
 		
@@ -110,14 +110,23 @@ public class RoomServiceTests {
 	
 	@Test
 	void roomServiceTest_10economy () {
-		var request = new RoomAllocationRequest(10,0,customerBudgets);
+		var request = new RoomAssignmentRequest(10,0,customerBudgets);
 		
 		var response = roomService.assignRoomsForCustomers(request);
 		
 		assertRoomAllocationResponse(response, 4, 189, 0, 0);
 	}
 	
-	private void assertRoomAllocationResponse(RoomAllocationResponse response, int economyRoomOccupancy, 
+	@Test
+	void roomServiceTest_noRoom () {
+		var request = new RoomAssignmentRequest(0,0,customerBudgets);
+		
+		var response = roomService.assignRoomsForCustomers(request);
+		
+		assertRoomAllocationResponse(response, 0, 0, 0, 0);
+	}
+	
+	private void assertRoomAllocationResponse(RoomAssignmentResponse response, int economyRoomOccupancy, 
 			long economyRoomEarn, int premiumRoomOccupancy, long premiumRoomEarn) {
 		
 		assertNotNull(response);

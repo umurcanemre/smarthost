@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class RoomAllocationResponse {
+public class RoomAssignmentResponse {
 	private long totalPremiumRoomEarn; //for the night
 	private int premiumRoomOccupancy; 
 	private long totalEconomyRoomEarn; //for the night
